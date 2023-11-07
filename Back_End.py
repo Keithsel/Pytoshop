@@ -11,6 +11,7 @@ def read_img(path):
 def output_img(image, num, output="output"):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     output = os.path.join(os.path.join(os.path.dirname(__file__), output))
+    os.chdir(output)
     cv2.imwrite("img" + num + ".jpg",image)
 
 
@@ -26,7 +27,6 @@ def apply_geometric_transform(image,rotate,shift,scale,elastic):
     transformed_image = augmented['image']
     return transformed_image
 
-
 def color_space_transformations(image,Hue,RGBs,Brightness,shuffle,Cla):
     transform = A.Compose([
         A.HueSaturationValue(p=Hue),
@@ -39,6 +39,7 @@ def color_space_transformations(image,Hue,RGBs,Brightness,shuffle,Cla):
     transformed = transform(image=image)['image']
 
     return transformed
+
 def kernel_filters(image,blur,meblur,gaublur,motion,emboss):
     transform = A.Compose([
         A.Blur(blur_limit=(1, 3),p=blur),
@@ -51,6 +52,7 @@ def kernel_filters(image,blur,meblur,gaublur,motion,emboss):
     transformed = transform(image=image)['image']
 
     return transformed
+
 def back_end(path,transformation_functions=[apply_geometric_transform, color_space_transformations, kernel_filters],rotate=0.5,shift=0.5,scale=0.5,elastic=0.5,blur=0.5,meblur=0.5,gaublur=0.5,motion=0.5,emboss=0.5,Hue=0.5,RGBs=0.5,Brightness=0.5,shuffle=0.5,Cla=0.5):
     for i in range(100):
         image = read_img(path)
@@ -63,4 +65,5 @@ def back_end(path,transformation_functions=[apply_geometric_transform, color_spa
             else:
                 image = kernel_filters(image,blur,meblur,gaublur,motion,emboss)
         output_img(image,str(i))
-back_end("314218660_458182969777595_2920542176920776199_n.jpg")
+        
+back_end("maxresdefault.jpg")
