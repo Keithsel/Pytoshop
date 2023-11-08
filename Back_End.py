@@ -75,4 +75,4 @@ def back_end(path,transformation_functions=[apply_geometric_transform, color_spa
             else:
                 image = kernel_filters(image,blur,meblur,gaublur,motion,emboss)
         output_img(image,str(i))
-back_end("314218660_458182969777595_2920542176920776199_n.jpg")
+# back_end("314218660_458182969777595_2920542176920776199_n.jpg")
