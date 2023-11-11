@@ -156,7 +156,7 @@ with ui.card().classes("w-full items-center"):
                         Hue=showVal(HueA),
                         RGBs=showVal(RGBsA),
                     )  # Pass image_path instead of img
-                    # ui.notify(f"Success with {filename}", type="positive")
+                    ui.notify(f"Success with {filename}", type="positive")
             shutil.make_archive(
                 "output_img",
                 "zip",
