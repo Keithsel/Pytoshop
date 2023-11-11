@@ -47,7 +47,9 @@ with ui.card().classes("w-full items-center"):
         img_path = os.path.join(img_folder, f"{str(uuid.uuid4())}.jpg")
         img.save(img_path)
 
-    ui.upload(multiple=True, on_upload=handle_upload).props("accept=image/*").classes("max-w-full")
+    ui.upload(multiple=True, on_upload=handle_upload).props("accept=image/*").classes(
+        "max-w-full"
+    )
 
     with ui.column():
         # ui.checkbox("apply_geometric_transform", on_change=show)
@@ -55,56 +57,73 @@ with ui.card().classes("w-full items-center"):
         # ui.label().bind_text_from(slider, "value")
         # ui.checkbox("color_space_transformations", on_change=show)
         # ui.checkbox("kernel_filters", on_change=show)
-        ui.label("Rotate")
-        rotateA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(rotateA, "value")
+        with ui.expansion("Geometric Transformations"):
+            ui.label("Rotate")
+            rotateA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(rotateA, "value")
 
-        ui.label("Shift")
-        shiftA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(shiftA, "value")
+            ui.label("Shift")
+            shiftA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(shiftA, "value")
 
-        ui.label("Scale")
-        scaleA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(scaleA, "value")
+            ui.label("Scale")
+            scaleA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(scaleA, "value")
 
-        ui.label("Elastic")
-        elasticA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(elasticA, "value")
+            ui.label("Elastic")
+            elasticA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(elasticA, "value")
+        with ui.expansion("Kernel Filters"):
+            ui.label("Blur")
+            blurA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(blurA, "value")
 
-        ui.label("Blur")
-        blurA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(blurA, "value")
+            ui.label("MEBlur")
+            meblurA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(meblurA, "value")
 
-        ui.label("MEBlur")
-        meblurA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(meblurA, "value")
+            ui.label("GauBlur")
+            gaublurA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(gaublurA, "value")
 
-        ui.label("GauBlur")
-        gaublurA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(gaublurA, "value")
+            ui.label("Motion")
+            motionA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(motionA, "value")
 
-        ui.label("Motion")
-        motionA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(motionA, "value")
+            ui.label("Emboss")
+            embossA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(embossA, "value")
 
-        ui.label("Emboss")
-        embossA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(embossA, "value")
+        with ui.expansion("Color Space Transformations"):
+            ui.label("Hue")
+            HueA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(HueA, "value")
 
-        ui.label("Hue")
-        HueA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(HueA, "value")
+            ui.label("RGBs")
+            RGBsA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(RGBsA, "value")
 
-        ui.label("RGBs")
-        RGBsA = ui.slider(min=0, max=1, value=0.5, step=0.01)
-        ui.label().bind_text_from(RGBsA, "value")
+            ui.label("Brightness")
+            BrightnessA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(BrightnessA, "value")
+
+            ui.label("Shuffle")
+            ShuffleA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(ShuffleA, "value")
+
+            ui.label("Cla")
+            ClaA = ui.slider(min=0, max=1, value=0.5, step=0.01)
+            ui.label().bind_text_from(ClaA, "value")
         # ui.button('Choose',on_click=lambda: show_numimg())
         # label = ui.label()
-        NumberOfImages = ui.number(label='Number of Images',value=10,min=1,max=100,step=1)
+        NumberOfImages = ui.number(
+            label="Number of Images", value=10, min=1, max=100, step=1
+        )
+
         def showVal(NumberOfImages):
             internal_var = NumberOfImages.value
             print(internal_var)
-            return int(internal_var)
+            return internal_var
 
         ui.button(
             "Apply Transformations",
@@ -123,25 +142,27 @@ with ui.card().classes("w-full items-center"):
                 if filename.endswith(".jpg") or filename.endswith(".png"):
                     image_path = os.path.join(folder_path, filename)
                     back_end(
-                        image_path, number_of_images=showVal(NumberOfImages),
-                        rotate=showVal(rotateA), 
-                        shift=showVal(shiftA), 
-                        scale=showVal(scaleA), 
-                        elastic=showVal(elasticA), 
-                        blur=showVal(blurA), 
-                        meblur=showVal(meblurA), 
-                        gaublur=showVal(gaublurA), 
-                        motion=showVal(motionA), 
-                        emboss=showVal(embossA), 
-                        Hue=showVal(HueA), 
-                        RGBs=showVal(RGBsA)
+                        image_path,
+                        number_of_images=int(showVal(NumberOfImages)),
+                        rotate=showVal(rotateA),
+                        shift=showVal(shiftA),
+                        scale=showVal(scaleA),
+                        elastic=showVal(elasticA),
+                        blur=showVal(blurA),
+                        meblur=showVal(meblurA),
+                        gaublur=showVal(gaublurA),
+                        motion=showVal(motionA),
+                        emboss=showVal(embossA),
+                        Hue=showVal(HueA),
+                        RGBs=showVal(RGBsA),
                     )  # Pass image_path instead of img
-                    ui.notify(f"Success with {filename}", type="positive")
+                    # ui.notify(f"Success with {filename}", type="positive")
             shutil.make_archive(
                 "output_img",
                 "zip",
                 os.path.join(os.path.dirname(__file__), "output"),
             )
+            ui.notify(f"Done", type="positive")
             remove_all_files("img")
             # timestamp.delete( )
         else:
@@ -163,7 +184,7 @@ def show_images():
         for f in os.listdir(output_folder)
         if f.endswith(".jpg")
     ]
-    with ui.grid(columns=10):
+    with ui.grid(columns=10) as grid:
         for image in images:
             ui.image(image).classes("w-20")
     # return gallery
